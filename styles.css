@@ -13,6 +13,10 @@ body {
   justify-content: center; /* Centraliza o .Card na horizontal */
   align-items: center;
   min-height: 100vh; /* Altura mínima da tela cheia, permitindo scroll se o conteúdo crescer */
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
 }
 
 .Card {
@@ -30,10 +34,11 @@ body {
   background-size: cover;
   background-position: center;
   color: #e9e9e9;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
 
 nav {
-  background-image: linear-gradient(0deg, #5d5b5e90, #29282e);
+  background-image: linear-gradient(0deg, #76458f90, #29282e);
   flex: 0.4;
   padding: 0 40px;
 }
@@ -41,7 +46,9 @@ nav {
 nav h2 {
   border-bottom: 1px #e9e9e950 solid;
   padding-bottom: 40px;
-  /* background-color: orange; */
+  font-family: "Audiowide", sans-serif;
+  font-weight: 100 !important;
+  font-style: normal;
 }
 
 .Right {
@@ -49,6 +56,11 @@ nav h2 {
   flex: 1;
   padding: 20px;
   backdrop-filter: blur(20px);
+}
+
+.Submenu:last-child {
+  border-bottom: 1px #e9e9e950 solid;
+  padding-bottom: 20px;
 }
 
 header {
@@ -63,5 +75,10 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
+}
+
+.Submenu div {
+  font-size: 20px;
+  font-weight: 100;
 }
