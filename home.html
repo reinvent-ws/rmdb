@@ -249,25 +249,14 @@
   </body>
 </html>
 
-<!-- Script Inteligente da API do YouTube + Lógica Aleatória -->
+<!-- Script Inteligente da API do YouTube + Lógica Aleatória Corrigida -->
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
   let player;
-  const mainPlayer = document.getElementById("main-player");
   const movieCards = document.querySelectorAll(".movie-card");
   const cardContainer = document.querySelector(".Card");
 
-  movieCards.forEach((card) => {
-    card.addEventListener("click", () => {
-      const videoId = card.getAttribute("data-video");
-      if (videoId) {
-        // Troca a URL do iframe mantendo autoplay, mute e sem botões
-        mainPlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&rel=0`;
-      }
-    });
-  });
-
-  // Função chamada automaticamente pela API do YouTube para configurar o player
+  // Função chamada automaticamente pela API do YouTube para configurar o player original
   function onYouTubeIframeAPIReady() {
     player = new YT.Player("main-player", {
       events: {
@@ -294,12 +283,32 @@
     });
   });
 
-  // Executa a mudança do vídeo e do fundo do container pai
+  // Executa a mudança do vídeo e garante que o evento de fim continue funcionando
   function changeMovie(videoId, imgSrc) {
-    if (videoId && player && typeof player.loadVideoById === "function") {
-      // Carrega o novo trailer automaticamente mantendo mudo
-      player.loadVideoById({ videoId: videoId });
-      player.mute();
+    if (videoId && player) {
+      // Ajuste de segurança: Garante que a API do YouTube reconheça as funções de carregamento
+      if (typeof player.loadVideoById === "function") {
+        player.loadVideoById({
+          videoId: videoId,
+          startSeconds: 0,
+        });
+      } else {
+        // Alternativa caso o player precise ser reiniciado com o evento ativo
+        const iframe = document.getElementById("main-player");
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1`;
+
+        // Recarrega o objeto da API para não perder o evento
+        player = new YT.Player("main-player", {
+          events: {
+            onStateChange: onPlayerStateChange,
+          },
+        });
+      }
+
+      // Sempre garante que o player comece mutado (exigência do navegador para dar autoplay)
+      if (typeof player.mute === "function") {
+        player.mute();
+      }
 
       // Altera o background-image da classe .Card de forma suave
       cardContainer.style.backgroundImage = `url('${imgSrc}')`;

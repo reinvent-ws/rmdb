@@ -111,9 +111,30 @@ nav h2 {
 .banner-container {
   width: 100%;
   height: 400px; /* 👈 Defina aqui a altura fixa que você deseja para o seu banner */
-  overflow: hidden; /* Esconde as barras pretas que vão vazar para fora */
   position: relative;
+  overflow: hidden; /* Esconde as barras pretas que vão vazar para fora */
   border-radius: 12px;
+}
+
+/* Estilo da máscara protetora */
+.video-mask-style {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0c0d19; /* Cor escura idêntica ao tema do app */
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  pointer-events: none; /* Não bloqueia cliques se precisar */
+  transition: opacity 0.4s ease-in-out; /* Fade suave */
+  z-index: 2; /* Fica por cima do player do YouTube */
+}
+
+/* Classe que ativa o bloqueio visual */
+.video-mask-style.active {
+  opacity: 1;
 }
 
 .video-banner {
