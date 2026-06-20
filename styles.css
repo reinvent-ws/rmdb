@@ -5,7 +5,7 @@ body {
 
 body {
   margin: 0; /* Removido o 'auto' para evitar comportamentos estranhos */
-  padding: 80px;
+  padding: 40px;
   box-sizing: border-box; /* Garante que o padding não estoure o tamanho da tela */
   background-image: linear-gradient(-45deg, #887a79, #1c1e44);
   display: flex;
@@ -227,7 +227,7 @@ nav h2 {
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  background-color: #1a1b35;
+  background-color: transparent !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
