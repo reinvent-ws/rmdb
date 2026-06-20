@@ -17,6 +17,9 @@
     />
   </head>
   <body>
+    <!-- 👇 Elemento flutuante do modal (Adicione aqui) -->
+    <div id="movie-logo-modal" class="logo-modal"></div>
+
     <div class="Card">
       <nav class="Left">
         <div class="MenuTitle">
@@ -97,11 +100,11 @@
           <div class="movies-grid">
             <div
               class="movie-card"
-              title="Homem-Aranha 4"
               data-video="62bIsvRcPv0"
+              data-logo="https://1000logos.net/wp-content/uploads/2017/06/Spiderman-Logo.png"
             >
               <img
-                src="https://preview.redd.it/new-poster-for-spider-man-brand-new-day-v0-b6vf98ump31h1.jpeg?width=640&crop=smart&auto=webp&s=4e66c5dd769a3e33e0f86df7dbdc69a1a0212d3b"
+                src="https://www.projectxparis.com/cdn/shop/articles/spider2026_12334f0a-de37-4eb1-8a8d-c93d4b08ce59.png?v=1781794443"
                 alt="Homem-Aranha 4"
               />
               <div class="movie-hover">
@@ -111,11 +114,11 @@
 
             <div
               class="movie-card"
-              title="A Morte do Demónio: Em Chamas"
               data-video="jkdBky7WN2Q"
+              data-logo="EvilDeadBurn.png"
             >
               <img
-                src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f452aa2c-0c64-4bbf-b065-942b8dbda8bb/djux5md-05fdddf3-e960-43b4-b94d-ad13866e46f4.png/v1/fill/w_728,h_1098,q_70,strp/evil_dead_burn_by_diamonddead_art_djux5md-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTkyOSIsInBhdGgiOiIvZi9mNDUyYWEyYy0wYzY0LTRiYmYtYjA2NS05NDJiOGRiZGE4YmIvZGp1eDVtZC0wNWZkZGRmMy1lOTYwLTQzYjQtYjk0ZC1hZDEzODY2ZTQ2ZjQucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.AZKU5D4rVXsqgBjIjlOK_EI-908Mmy_dXyvYabUnD_U"
+                src="https://mlpnk72yciwc.i.optimole.com/cqhiHLc.IIZS~2ef73/w:auto/h:auto/q:75/https://bleedingcool.com/wp-content/uploads/2026/05/rev-1-EDB-TP-023_High_Res_JPEG.jpeg"
                 alt="A Morte do Demónio: Em Chamas"
               />
               <div class="movie-hover">
@@ -125,11 +128,11 @@
 
             <div
               class="movie-card"
-              title="Coração Selvagem"
               data-video="JFQcDFhNh4o"
+              data-logo="heartofthebeast.png"
             >
               <img
-                src="https://preview.redd.it/official-poster-for-david-ayers-heart-of-the-beast-starring-v0-4wgdwampjn6h1.jpeg?width=640&crop=smart&auto=webp&s=9042d06acd9d13f49d3f040f07ae48dd1db6df0e"
+                src="https://assetsio.gnwcdn.com/Heart-of-the-Beast.webp?width=1200&height=1200&fit=crop&quality=100&format=png&enable=upscale&auto=webp"
                 alt="Coração Selvagem"
               />
               <div class="movie-hover">
@@ -137,9 +140,13 @@
               </div>
             </div>
 
-            <div class="movie-card" title="Shrek 5" data-video="LJdY1vjYnOM">
+            <div
+              class="movie-card"
+              data-video="LJdY1vjYnOM"
+              data-logo="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/34724bad-8868-4382-ba43-0018a0bdb9a4/dm9pomt-df966030-cb0d-41ae-ab66-1495c754f42f.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi8zNDcyNGJhZC04ODY4LTQzODItYmE0My0wMDE4YTBiZGI5YTQvZG05cG9tdC1kZjk2NjAzMC1jYjBkLTQxYWUtYWI2Ni0xNDk1Yzc1NGY0MmYucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.aHkiY5YLnHI9r_flQG8MlVfk41UqUtFP3OHIkIDS0lw"
+            >
               <img
-                src="https://m.media-amazon.com/images/M/MV5BNmNkNmRkNDAtOTMzNC00MWYzLWJhNjMtYjNkZTNjODVhOTg2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                src="https://conteudo.imguol.com.br/c/entretenimento/73/2026/06/16/shrek-5-ganha-primeiro-teaser-1781626342255_v2_3x4.png"
                 alt="Shrek 5"
               />
               <div class="movie-hover">
@@ -147,9 +154,13 @@
               </div>
             </div>
 
-            <div class="movie-card" title="Michael" data-video="u1HARE7V4UU">
+            <div
+              class="movie-card"
+              data-video="u1HARE7V4UU"
+              data-logo="Michael.png"
+            >
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPg2YrPsYJSAxDtKIMYmFqrPN5Z0x5dZ39iXhXtM2jrFQi_4MfN4bH331M&s=10"
+                src="https://images.euronews.com/articles/stories/09/54/00/13/1536x864_cmsv2_f158ba40-9c1b-5daa-8296-0c6fe0537c35-9540013.jpg"
                 alt="Michael"
               />
               <div class="movie-hover">
@@ -159,11 +170,11 @@
 
             <div
               class="movie-card"
-              title="Mestres do Universo"
               data-video="S3SMDqnN6fY"
+              data-logo="mastersoftheuniverselogo.png"
             >
               <img
-                src="https://pbs.twimg.com/media/G_hcw5uXwAA0GKQ.jpg"
+                src="https://static.wikia.nocookie.net/heroes-and-villain/images/2/2b/Skeletor_live-action.jpg/revision/latest?cb=20260127175923"
                 alt="Mestres do Universo"
               />
               <div class="movie-hover">
@@ -171,9 +182,13 @@
               </div>
             </div>
 
-            <div class="movie-card" title="Obsessão" data-video="gMC8kkwbIQQ">
+            <div
+              class="movie-card"
+              data-video="gMC8kkwbIQQ"
+              data-logo="Obsession.png"
+            >
               <img
-                src="https://preview.redd.it/wheres-the-best-play-to-buy-an-obsession-poster-v0-6ufuvzomz97h1.png?auto=webp&s=c4ffa62d82f592b948b1acdb8b39e097e08e7a63"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKVLWM3OWRpZ7IhwXQ-Xd92-qHM8gRckU4ALqt-jUD6AFy5HOwfQWKivQ&s=103"
                 alt="Obsessão"
               />
               <div class="movie-hover">
@@ -181,9 +196,13 @@
               </div>
             </div>
 
-            <div class="movie-card" title="Super-Girl" data-video="s1-pfiVMKAs">
+            <div
+              class="movie-card"
+              data-video="s1-pfiVMKAs"
+              data-logo="https://image.tmdb.org/t/p/original/d3uNCFmZUcsZWXr0j6c7Yp1qJzN.png"
+            >
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJDn_EPWpHe1BwoSuFkg0wXVJqlQKPFeavH7szUSKmhqk6SCi9oOpCNBE&s=10"
+                src="https://ingresso-a.akamaihd.net/b2b/production/uploads/article/image/5589/194679b21fdd202c6a300c833813c118.jpg"
                 alt="Super-Girl"
               />
               <div class="movie-hover">
@@ -191,9 +210,13 @@
               </div>
             </div>
 
-            <div class="movie-card" title="Moana" data-video="QKYFfYLe5rs">
+            <div
+              class="movie-card"
+              data-video="QKYFfYLe5rs"
+              data-logo="Moana.png"
+            >
               <img
-                src="https://www.europanet.com.br/image_gen/resizeimg.php?cod_produto=107710"
+                src="https://p2.trrsf.com/image/fget/cf/1200/1600/middle/images.terra.com/2026/03/24/1853273978-moana-versao-em-live-action-da-animacao-ganha-trailer-oficial.jpg"
                 alt="Moana"
               />
               <div class="movie-hover">
@@ -203,11 +226,11 @@
 
             <div
               class="movie-card"
-              title="Minions e Monstros"
               data-video="V-O-uBaHk3c"
+              data-logo="MinionsMonsters.png"
             >
               <img
-                src="https://image.tmdb.org/t/p/original/92iI5mfaIU6wdQnDI4ThhzFW1eN.jpg"
+                src="https://people.com/thmb/6aSGmZ9dQ06Zj-2NqMypwA6YKLQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(984x528:986x530)/minions-and-monsters-trailer-020926-e6739ed12aa44340824e43581827c00b.jpg"
                 alt="Minions e Monstros"
               />
               <div class="movie-hover">
@@ -217,11 +240,11 @@
 
             <div
               class="movie-card"
-              title="Coiote contra ACME"
               data-video="Nw8RJL3_ADU"
+              data-logo="CoyoteVsACME.png"
             >
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2xO8ovbDJzECVqFxtFJKE_sja4vgh9I-qH_hlameX7pluJpjs9YBmXcfj&s=10"
+                src="https://cdn.discussingfilm.net/wp-content/uploads/2025/07/Wile-Coyote-vs-acme.jpg"
                 alt="Coiote contra ACME"
               />
               <div class="movie-hover">
@@ -231,11 +254,11 @@
 
             <div
               class="movie-card"
-              title="Só Por Uma Noite"
               data-video="JRG244IfrRE"
+              data-logo="OneNightOnly.png"
             >
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrmAnP3EcnquajfNVTS5O1AjR_9XB71nKoBDm7HE2Mav6fTez0PX0WoyQ&s=10"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeljKREU8Mr3p-_m-v8o31SmMo32oFnIy-AVU8gtzXsEYG55pPTq-w4qU&s=10"
                 alt="Só Por Uma Noite"
               />
               <div class="movie-hover">
@@ -255,6 +278,7 @@
   let player;
   const movieCards = document.querySelectorAll(".movie-card");
   const cardContainer = document.querySelector(".Card");
+  const modal = document.getElementById("movie-logo-modal");
 
   // Função chamada automaticamente pela API do YouTube para configurar o player original
   function onYouTubeIframeAPIReady() {
@@ -325,4 +349,36 @@
 
     changeMovie(videoId, imgSrc);
   }
+
+  movieCards.forEach((card) => {
+    // Quando o clique acontece, troca o vídeo normalmente
+    card.addEventListener("click", () => {
+      const videoId = card.getAttribute("data-video");
+      const imgSrc = card.querySelector("img").src;
+      changeMovie(videoId, imgSrc);
+    });
+
+    // 1. Quando o mouse entra no card do filme
+    card.addEventListener("mouseenter", (e) => {
+      const logoUrl = card.getAttribute("data-logo");
+
+      // Se o card tiver um link de logo definido, ativa o modal
+      if (logoUrl) {
+        modal.style.backgroundImage = `url('${logoUrl}')`;
+        modal.classList.add("active");
+      }
+    });
+
+    // 2. Quando o mouse se move dentro do card, o modal flutua junto
+    card.addEventListener("mousemove", (e) => {
+      // Adicionamos +15 pixels em X e Y para o modal não ficar exatamente embaixo da seta do mouse
+      modal.style.left = e.pageX + "px";
+      modal.style.top = e.pageY - 30 + "px";
+    });
+
+    // 3. Quando o mouse sai do card do filme, o modal desaparece suavemente
+    card.addEventListener("mouseleave", () => {
+      modal.classList.remove("active");
+    });
+  });
 </script>

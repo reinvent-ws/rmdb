@@ -19,6 +19,39 @@ body {
   font-style: normal;
 }
 
+/* Estilo do Mini-Modal Flutuante */
+.logo-modal {
+  position: absolute;
+  width: 160px; /* Largura ideal para o logo do filme */
+  height: auto;
+  min-width: 280px;
+  min-height: 50px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  pointer-events: none; /* Essencial: o mouse ignora o bloco do modal */
+  opacity: 0;
+
+  /* 👇 ALTERAÇÃO AQUI: -50% nos dois eixos centraliza perfeitamente no meio do mouse */
+  transform: translate(-50%, -50%) scale(0.8);
+  transform-origin: center center; /* O efeito fade agora expande a partir do centro */
+
+  transition:
+    opacity 0.25s ease-in-out,
+    transform 0.25s ease-in-out;
+  z-index: 9999;
+  filter: drop-shadow(
+    0px 3px 3px rgba(0, 0, 0, 1)
+  ); /* Sombra bonita no contorno do logo */
+}
+
+/* Estado ativo com fade suave */
+.logo-modal.active {
+  opacity: 1; /* 
+  👇 ALTERAÇÃO AQUI: Mantém o centro exato ao ficar ativo */
+  transform: translate(-50%, -50%) scale(1);
+}
+
 .Card {
   display: flex;
   width: 100%;
