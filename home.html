@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RMDB - Raya Banco de Dados dos Filmes</title>
+    <title>TrailerFlix - Portal de Trailers de Cinema</title>
     <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
@@ -17,58 +17,47 @@
     />
   </head>
   <body>
-    <!-- Elemento flutuante do modal -->
     <div id="movie-logo-modal" class="logo-modal"></div>
 
     <div class="Card">
-      <nav class="Left">
-        <div class="MenuTitle">
-          <h2>RMDB</h2>
-          <h5>
-            Raya Banco <br />
-            de Dados dos Filmes
-          </h5>
+      <div class="card-overlay"></div>
+
+      <nav class="Left floating-menu">
+        <div class="MenuTitle" style="text-align: center">
+          <h2
+            title="TrailerFlix - Portal de Trailers de Cinema"
+            style="cursor: pointer"
+          >
+            Trailer<br />Flix
+          </h2>
         </div>
         <div class="Divider">.</div>
-        <div>
-          <div class="Submenu">
+        <div class="menu-items">
+          <div class="Submenu active" title="Inicial">
             <div class="icon-house"></div>
-            <h3>Inicial</h3>
           </div>
-          <div class="Submenu">
+          <div class="Submenu" title="Filmes">
             <div class="icon-clapperboard"></div>
-            <h3>Filmes</h3>
           </div>
-          <div class="Submenu">
-            <div class="icon-play"></div>
-            <h3>Seriados</h3>
+          <div class="Submenu" title="Séries">
+            <div class="icon-tv"></div>
           </div>
-          <div class="Submenu">
-            <div class="icon-star"></div>
-            <h3>Favoritos</h3>
+          <div class="Submenu" title="Mais Vistos">
+            <div class="icon-trending-up"></div>
           </div>
-        </div>
-        <div class="Divider">.</div>
-        <div>
-          <h5>Account</h5>
-          <h4>Amanda Flávia</h4>
-          <h4>João Paulo</h4>
-        </div>
-        <div class="Divider">.</div>
-        <div class="Logout">
-          <div class="icon-bell"></div>
-          <div class="icon-user-round"></div>
-          <div>João Paulo</div>
-          <div class="icon-log-out" title="Sair"></div>
+          <div class="Submenu" title="Minha Lista">
+            <div class="icon-heart"></div>
+          </div>
         </div>
       </nav>
-      <div class="Right">
-        <div class="sticky-banner">
-          <div class="banner-container">
+
+      <main class="main-content">
+        <div class="fixed-top-area">
+          <div class="banner-container curved-theater">
             <iframe
               id="main-player"
               class="video-banner"
-              src="https://www.youtube.com/embed/62bIsvRcPv0?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1"
+              src="https://www.youtube.com/embed/62bIsvRcPv0?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1&playlist=62bIsvRcPv0&loop=1"
               title="YouTube video player"
               frameborder="0"
               allow="
@@ -86,7 +75,7 @@
             <div id="current-movie-logo" class="current-logo-overlay"></div>
           </div>
 
-          <div class="TopLeft">
+          <div class="search-bar-integrated">
             <div class="icon-search"></div>
             <input
               type="text"
@@ -95,15 +84,16 @@
           </div>
         </div>
 
-        <section class="movies-section">
-          <h2 class="section-title">Últimos Lançamentos</h2>
-          <div class="movies-grid"></div>
-        </section>
-      </div>
+        <div class="scrollable-catalog">
+          <section class="movies-section vertical-layout">
+            <h2 class="section-title">Catálogo Completo</h2>
+            <div class="movies-grid high-density"></div>
+          </section>
+        </div>
+      </main>
     </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
   </body>
 </html>
-
-<!-- Script Inteligente da API do YouTube + Consumo Dinâmico de JSON -->
-<script src="https://www.youtube.com/iframe_api"></script>
-<script src="script.js"></script>

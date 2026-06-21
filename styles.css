@@ -1,473 +1,349 @@
 html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0c0d19;
 }
 
 body {
-  margin: 0; /* Removido o 'auto' para evitar comportamentos estranhos */
-  padding: 40px;
-  box-sizing: border-box; /* Garante que o padding não estoure o tamanho da tela */
-  background-image: linear-gradient(-45deg, #887a79, #1c1e44);
+  padding: 20px;
+  box-sizing: border-box;
+  background-image: linear-gradient(-45deg, #131426, #1c1e44);
   display: flex;
-  flex-direction: column; /* Direção do fluxo do body */
-  justify-content: center; /* Centraliza o .Card na horizontal */
+  justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Altura mínima da tela cheia, permitindo scroll se o conteúdo crescer */
+  min-height: 100vh;
   font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 100;
-  font-style: normal;
 }
 
-/* Estilo do Mini-Modal Flutuante */
-.logo-modal {
+/* Container Principal Restrito */
+.Card {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 1280px;
+  height: 96vh;
+  border-radius: 20px;
+  overflow: hidden;
+  background-repeat: no-repeat !important;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.8s ease-in-out;
+}
+
+/* Máscara de Blur de Fundo */
+.card-overlay {
   position: absolute;
-  width: 160px; /* Largura ideal para o logo do filme */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(12, 13, 25, 0.78);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Menu Lateral */
+.floating-menu {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55px;
+  background: rgba(12, 13, 25, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 30px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0.25;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.floating-menu:hover {
+  opacity: 1;
+  background: rgba(12, 13, 25, 0.95);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.MenuTitle h2 {
+  font-family: "Audiowide", cursive;
+  font-size: 11px;
+  color: #a855f7;
+  margin: 0;
+}
+
+.Divider {
+  color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  width: 50%;
+  margin: 12px 0;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+
+.Submenu {
+  color: #71717a;
+  font-size: 18px;
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.Submenu:hover,
+.Submenu.active {
+  color: #ffffff;
+  background: rgba(168, 85, 247, 0.25);
+  transform: scale(1.1);
+}
+
+/* Estrutura Central Principal */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* 🌟 ÁREA FIXADA SUPERIOR REORGANIZADA */
+.fixed-top-area {
+  position: relative;
+  top: -13px;
+  width: 100%;
+  background: transparent;
+  z-index: 9;
+}
+
+/* Monitor Curvo do Banner */
+.curved-theater {
+  position: relative;
+  width: 100%;
+  height: 533px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  /* transform: perspective(1200px) rotateX(3.5deg) scaleX(1.02); */
+  transform-origin: top center;
+  box-shadow: 0px 25px 45px rgba(0, 0, 0, 0.95);
+}
+
+.video-banner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: none;
+  transform: scale(1.35) translateY(2%);
+}
+
+/* 🌟 LOGO FIXADO NO CANTO DO PLAYER DO YOUTUBE */
+.current-logo-overlay {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 160px;
+  height: 70px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center right;
+  z-index: 99;
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out;
+  opacity: 0;
+  filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.95));
+}
+
+.current-logo-overlay.visible {
+  opacity: 1;
+}
+
+/* Barra de Pesquisa */
+.search-bar-integrated {
+  display: flex;
+  align-items: center;
+  background: rgba(15, 16, 32, 0.85);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin: -15px auto 0 auto;
+  width: 80%;
+  max-width: 480px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  position: relative;
+  z-index: 100;
+}
+
+.search-bar-integrated input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  width: 100%;
+  padding-left: 12px;
+  font-size: 13px;
+}
+
+.search-bar-integrated .icon-search {
+  color: #a855f7;
+  font-size: 16px;
+}
+
+/* 🌟 ÁREA DO CATÁLOGO DE BAIXO (AJUSTADA) */
+.scrollable-catalog {
+  top: -35px;
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 5;
+}
+
+/* Espaçamento Interno Grid */
+.movies-section.vertical-layout {
+  padding: 20px 40px 40px 105px;
+}
+
+.section-title {
+  font-family: "Tektur", sans-serif;
+  color: white;
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+
+.movies-grid.high-density {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 22px;
+  width: 100%;
+}
+
+/* Cartões do Catálogo */
+.movie-card {
+  position: relative;
+  aspect-ratio: 2/3;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #131426;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.movie-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(168, 85, 247, 0.25);
+}
+
+.movie-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(12, 13, 25, 0.95),
+    rgba(12, 13, 25, 0.1)
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.movie-card:hover .movie-hover {
+  opacity: 1;
+}
+
+.play-icon-purple {
+  width: 42px;
+  height: 42px;
+  background-color: #a855f7;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+}
+
+/* 🌟 MINI-MODAL LOGO FLUTUANTE GLOBAL */
+.logo-modal {
+  position: fixed; /* Fixado em relação ao monitor */
+  width: 120px;
   height: auto;
-  min-width: 180px;
-  min-height: 70px;
+  min-height: 60px;
+  /* background-color: #a855f7; */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  pointer-events: none; /* Essencial: o mouse ignora o bloco do modal */
+  pointer-events: none; /* Essencial para passar os cliques dele para os cards */
   opacity: 0;
-
-  /* -50% nos dois eixos centraliza perfeitamente no meio do mouse */
   transform: translate(-50%, -50%) scale(0.8);
-  transform-origin: bottom center; /* O efeito fade agora expande a partir do centro */
-
+  transform-origin: center center;
   transition:
-    opacity 0.25s ease-in-out,
-    transform 0.25s ease-in-out;
-  z-index: 9999;
-  filter: drop-shadow(
-    0px 3px 3px rgba(0, 0, 0, 1)
-  ); /* Sombra bonita no contorno do logo */
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out;
+  z-index: 9999; /* Fica acima absolutamente de tudo */
+  filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.95));
 }
 
-/* Estado ativo com fade suave */
 .logo-modal.active {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
 
-.Card {
-  display: flex;
-  width: 100%;
-  max-width: 1240px;
-  flex: 1;
-  border-radius: 19px;
-  overflow: hidden;
-  border: 1px solid transparent;
-  background-clip: padding-box;
-
-  background-image: url("https://preview.redd.it/new-poster-for-spider-man-brand-new-day-v0-b6vf98ump31h1.jpeg?width=640&crop=smart&auto=webp&s=4e66c5dd769a3e33e0f86df7dbdc69a1a0212d3b"); /* Pode iniciar com o do Aranha */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-
-  /* A mudança do fundo ficar suave */
-  transition: background-image 0.8s ease-in-out;
-  color: #e9e9e9;
-  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+/* Scrollbar da Grid */
+.scrollable-catalog::-webkit-scrollbar {
+  width: 6px;
 }
 
-.Left {
-  width: 250px;
-  background-color: #1e170e90; /* Tom escuro para combinar com o layout */
-  padding: 30px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  /* Fixar o tamanho adequado */
-  height: 100%;
-  max-height: 100vh;
-  box-sizing: border-box;
-}
-
-nav {
-  background-image: linear-gradient(0deg, #76458f90, #000000);
-  flex: 0.3;
-  padding: 0 20px;
-}
-
-.DividerVertical,
-.Divider {
-  background-color: #c9c9c950;
-  color: transparent;
-}
-
-.DividerVertical {
-  width: 1px;
-}
-
-.Divider {
-  height: 1px;
-  margin: 40px 0;
-}
-
-nav h2 {
-  font-family: "Audiowide", sans-serif;
-  font-weight: 100 !important;
-}
-
-/* --- Painel da Direita Principal --- */
-.Right {
-  flex: 1;
-  padding: 24px;
-  background-image: linear-gradient(45deg, #e0ceaa50, #3c3a45);
-  backdrop-filter: blur(20px);
-
-  /* Alinhando o comportamento do tamanho */
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  max-height: 100vh; /* Garante que o lado direito nunca ultrapasse a tela */
-  box-sizing: border-box;
-  overflow: hidden; /* Essencial para não deixar a página inteira rolar */
-}
-
-/* Área fixa do Trailer (Não se move) */
-.sticky-banner {
-  flex-shrink: 0;
-  margin-bottom: 10px;
-  background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-end;
-}
-
-/* Caixa com o Zoom de Cinema */
-.banner-container {
-  width: 100%;
-  height: 400px; /* Defina aqui a altura fixa que você deseja para o seu banner */
-  position: relative;
-  overflow: hidden; /* Esconde as barras pretas que vão vazar para fora */
-  border-radius: 12px;
-}
-
-/* Estilo da máscara protetora */
-.video-mask-style {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #0c0d19; /* Cor escura idêntica ao tema do app */
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  pointer-events: none; /* Não bloqueia cliques se precisar */
-  transition: opacity 0.4s ease-in-out; /* Fade suave */
-  z-index: 2; /* Fica por cima do player do YouTube */
-}
-
-/* Classe que ativa o bloqueio visual */
-.video-mask-style.active {
-  opacity: 1;
-}
-
-.video-banner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-
-  /* 1. Faz o vídeo preencher todo o espaço do container */
-  object-fit: cover;
-
-  /* 2. Centraliza o vídeo e aplica um leve "zoom" (scale 1.35) para jogar as barras pretas originais do YouTube para fora do limite visível */
-  transform: translate(-50%, -50%) scale(1.35);
-
-  pointer-events: none; /* Evita que cliques acidentais pausem o vídeo */
-}
-
-/* --- SEÇÃO DO SCROLL (Mágica aplicada aqui!) --- */
-.movies-section {
-  flex: 1;
-  overflow-y: auto; /* O scroll acontece de forma isolada aqui dentro */
-  padding-right: 8px; /* Espaço para a barra de rolagem não cobrir os cards */
-}
-
-/* Personalização exclusiva da barra de rolagem na área de pôsteres */
-.movies-section::-webkit-scrollbar {
-  width: 7px; /* Barrinha fina e delicada */
-}
-
-.movies-section::-webkit-scrollbar-track {
-  background: transparent; /* Fundo totalmente invisível */
-}
-
-.movies-section::-webkit-scrollbar-thumb {
-  background-color: #1c1e44; /* Cor roxa original do fundo do seu app */
-  border-radius: 10px; /* Deixa a barrinha arredondada */
-}
-
-.movies-section::-webkit-scrollbar-thumb:hover {
-  background-color: #32356d; /* Tom levemente iluminado quando passa o mouse */
-}
-
-/* --- Grade de Filmes (4 colunas) --- */
-.movies-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  padding-top: 10px;
-  padding-bottom: 40px; /* Margem de folga confortável no final da rolagem */
-}
-
-/* --- Configuração do Card de Filme Individual --- */
-.movie-card {
-  position: relative;
-  aspect-ratio: 2 / 3;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  background-color: transparent !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.movie-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: filter 0.3s ease;
-}
-
-/* --- Efeitos Delicados de Hover --- */
-.movie-card:hover {
-  transform: scale(1.03); /* Zoom bem sutil */
-}
-
-.movie-card:hover img {
-  filter: brightness(0.4); /* Escurece o fundo para destacar o botão */
-}
-
-.movie-hover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.movie-card:hover .movie-hover {
-  opacity: 1;
-}
-
-/* Ícone Redondo de Play Roxo */
-.play-icon-purple {
-  width: 46px;
-  height: 46px;
-  background-color: #1c1e44; /* Cor roxa idêntica ao fundo da página */
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  font-size: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-}
-
-.TopLeft,
-.TopRight,
-.Submenu,
-.Logout {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-}
-
-.TopLeft {
-  position: relative;
-  width: fit-content;
-  display: flex;
-
-  .icon-search {
-    position: absolute;
-    right: 5px;
-  }
-
-  input {
-    background-color: #80808050;
-    border: 0px;
-    border-radius: 4px;
-    padding: 8px;
-    width: 240px;
-    color: white;
-  }
-
-  input::placeholder {
-    color: #b9b9b975;
-    opacity: 1;
-  }
-
-  input:focus {
-    outline: none;
-  }
-}
-
-.Submenu h3 {
-  font-size: 16px;
-  font-weight: 100;
-  font-family: "Tektur", sans-serif;
-  font-weight: 100;
-}
-
-input[type="text"] {
-  border-radius: 6px;
-  outline-color: none;
-}
-
-.Logout {
-  justify-content: flex-end;
-}
-
-.section-title {
-  color: #ffffff;
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-/* Container da Grade (Grid 4x3) */
-.movies-grid {
-  display: grid;
-  grid-template-columns: repeat(
-    4,
-    1fr
-  ); /* Força 4 colunas perfeitas de tamanhos iguais */
-  gap: 15px; /* Espaço entre os cartões */
-}
-
-/* O Card do Filme Individual */
-.movie-card {
-  position: relative;
-  aspect-ratio: 2 / 3; /* Proporção padrão vertical de pôsteres de cinema */
-  border-radius: 12px; /* Mesma curvatura interna suave dos seus componentes */
-  overflow: hidden;
-  cursor: pointer;
-  background-color: #1a1b35; /* Fundo reserva se a imagem falhar */
-
-  /* Efeito de transição suave e delicada na escala */
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Garante que a imagem se ajuste sem quebrar a proporção */
-.movie-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: filter 0.4s ease;
-}
-
-/* --- Efeito de Hover Delicado --- */
-.movie-card:hover {
-  transform: scale(1.03); /* Escala bem leve e sutil como você pediu */
-}
-
-.movie-card:hover img {
-  filter: brightness(
-    0.6
-  ); /* Escurece levemente o pôster para destacar o botão de play */
-}
-
-/* Camada preta transparente do hover que guarda o ícone */
-.movie-hover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0; /* Invisível por padrão */
-  transition: opacity 0.3s ease;
-}
-
-.movie-card:hover .movie-hover {
-  opacity: 1; /* Aparece suavemente ao passar o mouse */
-}
-
-/* Botão de Play Roxo */
-.play-icon-purple {
-  width: 50px;
-  height: 50px;
-  background-color: #1c1e44; /* Mesma cor roxa escura do fundo da sua página */
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  font-size: 18px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  transform: scale(0.8);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.movie-card:hover .play-icon-purple {
-  transform: scale(1); /* O botão dá um leve salto elegante ao abrir */
-}
-
-/* --- Personalização da Barra de Scroll Geral --- */
-
-/* 1. Define a largura da barra de rolagem (deixando-a mais fininha) */
-::-webkit-scrollbar {
-  width: 8px; /* Largura da barra vertical */
-  height: 8px; /* Altura da barra horizontal (se houver) */
-}
-
-/* 2. Deixa o fundo (pista) da barra totalmente transparente */
-::-webkit-scrollbar-track {
+.scrollable-catalog::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* 3. A barrinha que mexe: cor roxa combinando com o fundo e cantos arredondados */
-::-webkit-scrollbar-thumb {
-  background-color: #1c1e44; /* Mesma cor roxa do fundo do seu app */
-  border-radius: 20px; /* Deixa a barrinha arredondada e suave */
-  border: 2px solid transparent; /* Cria um pequeno espaçamento elegante */
+.scrollable-catalog::-webkit-scrollbar-thumb {
+  background-color: rgba(168, 85, 247, 0.3);
+  border-radius: 10px;
 }
 
-/* 4. Efeito sutil: quando passar o mouse em cima da barrinha, ela fica levemente mais clara */
-::-webkit-scrollbar-thumb:hover {
-  background-color: #292b5a;
-}
-
-/* Logo fixado no canto superior direito do vídeo em exibição */
-.current-logo-overlay {
-  position: absolute;
-  top: 10px; /* Modificado: Afasta o logo do teto do container */
-  right: 20px; /* Modificado: Afasta o logo da lateral para o overflow não cortar */
-  width: 140px; /* Tamanho ideal para não cobrir muito o vídeo */
-  height: 70px; /* FIX: Definindo a altura fixa para o container não sumir */
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center right;
-  pointer-events: none; /* Não atrapalha interações no vídeo */
-  z-index: 99999; /* FIX Supremo: Fica na frente absoluta do iframe e das sombras */
-  transition:
-    background-image 0.5s ease-in-out,
-    opacity 0.5s ease-in-out;
-  opacity: 0; /* Começa invisível e aparece quando carregar o primeiro logo */
-  filter: drop-shadow(
-    0px 2px 4px rgba(0, 0, 0, 0.8)
-  ); /* Destaca o logo sobre o vídeo */
-}
-
-/* Quando tiver um logo válido, nós aumentamos a opacidade */
-.current-logo-overlay.visible {
-  opacity: 1;
+/* --- ESTILIZAÇÃO DOS CARTÕES SEM IMAGEM (FALLBACK) --- */
+.fallback-card {
+  background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
