@@ -24,17 +24,17 @@ body {
   position: absolute;
   width: 160px; /* Largura ideal para o logo do filme */
   height: auto;
-  min-width: 280px;
-  min-height: 50px;
+  min-width: 180px;
+  min-height: 70px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   pointer-events: none; /* Essencial: o mouse ignora o bloco do modal */
   opacity: 0;
 
-  /* 👇 ALTERAÇÃO AQUI: -50% nos dois eixos centraliza perfeitamente no meio do mouse */
+  /* -50% nos dois eixos centraliza perfeitamente no meio do mouse */
   transform: translate(-50%, -50%) scale(0.8);
-  transform-origin: center center; /* O efeito fade agora expande a partir do centro */
+  transform-origin: bottom center; /* O efeito fade agora expande a partir do centro */
 
   transition:
     opacity 0.25s ease-in-out,
@@ -47,8 +47,7 @@ body {
 
 /* Estado ativo com fade suave */
 .logo-modal.active {
-  opacity: 1; /* 
-  👇 ALTERAÇÃO AQUI: Mantém o centro exato ao ficar ativo */
+  opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
 
@@ -67,7 +66,7 @@ body {
   background-size: cover;
   background-position: center;
 
-  /* 👇 ADICIONE ESTA LINHA para a mudança do fundo ficar suave */
+  /* A mudança do fundo ficar suave */
   transition: background-image 0.8s ease-in-out;
   color: #e9e9e9;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
@@ -81,7 +80,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
 
-  /* 👇 Adicione/Substitua estas linhas para fixar o tamanho adequado */
+  /* Fixar o tamanho adequado */
   height: 100%;
   max-height: 100vh;
   box-sizing: border-box;
@@ -120,13 +119,13 @@ nav h2 {
   background-image: linear-gradient(45deg, #e0ceaa50, #3c3a45);
   backdrop-filter: blur(20px);
 
-  /* 👇 Alinhando o comportamento do tamanho */
+  /* Alinhando o comportamento do tamanho */
   display: flex;
   flex-direction: column;
   height: 100%;
-  max-height: 100vh; /* 👈 Garante que o lado direito nunca ultrapasse a tela */
+  max-height: 100vh; /* Garante que o lado direito nunca ultrapasse a tela */
   box-sizing: border-box;
-  overflow: hidden; /* 👈 Essencial para não deixar a página inteira rolar */
+  overflow: hidden; /* Essencial para não deixar a página inteira rolar */
 }
 
 /* Área fixa do Trailer (Não se move) */
@@ -143,7 +142,7 @@ nav h2 {
 /* Caixa com o Zoom de Cinema */
 .banner-container {
   width: 100%;
-  height: 400px; /* 👈 Defina aqui a altura fixa que você deseja para o seu banner */
+  height: 400px; /* Defina aqui a altura fixa que você deseja para o seu banner */
   position: relative;
   overflow: hidden; /* Esconde as barras pretas que vão vazar para fora */
   border-radius: 12px;
@@ -347,7 +346,7 @@ input[type="text"] {
   grid-template-columns: repeat(
     4,
     1fr
-  ); /* 👈 Força 4 colunas perfeitas de tamanhos iguais */
+  ); /* Força 4 colunas perfeitas de tamanhos iguais */
   gap: 15px; /* Espaço entre os cartões */
 }
 
@@ -375,7 +374,7 @@ input[type="text"] {
 
 /* --- Efeito de Hover Delicado --- */
 .movie-card:hover {
-  transform: scale(1.03); /* 👈 Escala bem leve e sutil como você pediu */
+  transform: scale(1.03); /* Escala bem leve e sutil como você pediu */
 }
 
 .movie-card:hover img {
@@ -406,7 +405,7 @@ input[type="text"] {
 .play-icon-purple {
   width: 50px;
   height: 50px;
-  background-color: #1c1e44; /* 👈 Mesma cor roxa escura do fundo da sua página */
+  background-color: #1c1e44; /* Mesma cor roxa escura do fundo da sua página */
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -445,4 +444,30 @@ input[type="text"] {
 /* 4. Efeito sutil: quando passar o mouse em cima da barrinha, ela fica levemente mais clara */
 ::-webkit-scrollbar-thumb:hover {
   background-color: #292b5a;
+}
+
+/* Logo fixado no canto superior direito do vídeo em exibição */
+.current-logo-overlay {
+  position: absolute;
+  top: 10px; /* Modificado: Afasta o logo do teto do container */
+  right: 20px; /* Modificado: Afasta o logo da lateral para o overflow não cortar */
+  width: 140px; /* Tamanho ideal para não cobrir muito o vídeo */
+  height: 70px; /* FIX: Definindo a altura fixa para o container não sumir */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center right;
+  pointer-events: none; /* Não atrapalha interações no vídeo */
+  z-index: 99999; /* FIX Supremo: Fica na frente absoluta do iframe e das sombras */
+  transition:
+    background-image 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
+  opacity: 0; /* Começa invisível e aparece quando carregar o primeiro logo */
+  filter: drop-shadow(
+    0px 2px 4px rgba(0, 0, 0, 0.8)
+  ); /* Destaca o logo sobre o vídeo */
+}
+
+/* Quando tiver um logo válido, nós aumentamos a opacidade */
+.current-logo-overlay.visible {
+  opacity: 1;
 }
